@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── LIGHT MODE (warm parchment / ancient scroll) ── */
+:root {
+  --background: #f5f0e8;
+  --foreground: #1a2e2e;
+  --card: #ede8dc;
+  --card-foreground: #1a2e2e;
+  --popover: #ede8dc;
+  --popover-foreground: #1a2e2e;
+  --primary: #2d7a72;
+  --primary-foreground: #f5f0e8;
+  --secondary: #ddd7c8;
+  --secondary-foreground: #2a4040;
+  --muted: #e4dece;
+  --muted-foreground: #5a7870;
+  --accent: #a07830;
+  --accent-foreground: #f5f0e8;
+  --destructive: #c0392b;
+  --destructive-foreground: #fff;
+  --border: #c8bfa8;
+  --input: #ddd7c8;
+  --ring: #2d7a72;
+  --chart-1: #2d7a72;
+  --chart-2: #45a096;
+  --chart-3: #a07830;
+  --chart-4: #3d8a7e;
+  --chart-5: #4d9a8e;
+  --radius: 0.75rem;
+  --sidebar: #ede8dc;
+  --sidebar-foreground: #1a2e2e;
+  --sidebar-primary: #2d7a72;
+  --sidebar-primary-foreground: #f5f0e8;
+  --sidebar-accent: #ddd7c8;
+  --sidebar-accent-foreground: #1a2e2e;
+  --sidebar-border: #c8bfa8;
+  --sidebar-ring: #2d7a72;
+}
+
+/* ── DARK MODE (deep jungle / ancient night) ── */
+.dark {
+  --background: #0d1a1a;
+  --foreground: #e8f0ee;
+  --card: #122424;
+  --card-foreground: #e8f0ee;
+  --popover: #122424;
+  --popover-foreground: #e8f0ee;
+  --primary: #45a096;
+  --primary-foreground: #0d1a1a;
+  --secondary: #1a2e2e;
+  --secondary-foreground: #d4e0dd;
+  --muted: #152525;
+  --muted-foreground: #8ba8a2;
+  --accent: #c9a962;
+  --accent-foreground: #0d1a1a;
+  --destructive: #ef4444;
+  --destructive-foreground: #fef2f2;
+  --border: #2a4040;
+  --input: #1a2e2e;
+  --ring: #45a096;
+  --chart-1: #45a096;
+  --chart-2: #2d7a72;
+  --chart-3: #c9a962;
+  --chart-4: #3d8a7e;
+  --chart-5: #4d9a8e;
+  --sidebar: #101f1f;
+  --sidebar-foreground: #e8f0ee;
+  --sidebar-primary: #45a096;
+  --sidebar-primary-foreground: #0d1a1a;
+  --sidebar-accent: #1a2e2e;
+  --sidebar-accent-foreground: #e8f0ee;
+  --sidebar-border: #2a4040;
+  --sidebar-ring: #45a096;
+}
+
+@theme inline {
+  --font-sans: Plus Jakarta Sans, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Cormorant Garamond, ui-serif, Georgia, serif;
+  --font-mono: JetBrains Mono, ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Ancient texture and vignette effect for entire page */
+.ancient-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(13, 26, 26, 0.3) 100%);
+  transition: background 0.5s ease;
+}
+
+.light .ancient-overlay {
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(160, 140, 100, 0.15) 100%);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d7a72;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45a096;
+}
+
+/* Subtle paper grain texture */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Aged parchment edge effect */
+.parchment-edge {
+  position: relative;
+}
+
+.parchment-edge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(201, 169, 98, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Ancient scroll decorative borders */
+.ancient-border {
+  position: relative;
+}
+
+.ancient-border::before,
+.ancient-border::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+}
+
+.ancient-border::before {
+  top: 0;
+}
+
+.ancient-border::after {
+  bottom: 0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d7a72;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45a096;
+}

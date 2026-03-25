@@ -167,7 +167,7 @@ export function SkillsSection() {
                   >
                     <div className="w-6 h-px bg-linear-to-r from-transparent to-accent/20" />
                     <div className="w-1 h-1 rounded-full bg-accent/15" />
-                    <div className="w-6 h-px bg-gradient-to-l from-transparent to-accent/20" />
+                    <div className="w-6 h-px bg-linear-to-l from-transparent to-accent/20" />
                   </motion.div>
                 </div>
               </motion.div>

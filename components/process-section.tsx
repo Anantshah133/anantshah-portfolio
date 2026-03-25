@@ -1,281 +1,203 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { SectionTitle } from "./section-title"
-import { Headphones, Lightbulb, PenTool, Sparkles, Infinity as InfinityIcon } from "lucide-react"
+import { CircleDot, Lightbulb, Hexagon, Sparkles, Infinity as InfinityIcon } from "lucide-react"
 
 const processSteps = [
   {
-    number: "01",
+    roman: "I",
     title: "Listen",
     sanskrit: "श्रवण",
     description: "Understanding your vision, constraints, and the story you want to tell.",
-    icon: Headphones,
-    size: "medium", // Bento grid size
+    icon: CircleDot,
   },
   {
-    number: "02",
+    roman: "II",
     title: "Distill",
     sanskrit: "सार",
     description: "Stripping away noise to find the essential elements that matter.",
     icon: Lightbulb,
-    size: "large",
   },
   {
-    number: "03",
+    roman: "III",
     title: "Shape",
     sanskrit: "रूप",
     description: "Crafting interfaces that feel natural, intuitive, and purposeful.",
-    icon: PenTool,
-    size: "medium",
+    icon: Hexagon,
   },
   {
-    number: "04",
+    roman: "IV",
     title: "Refine",
     sanskrit: "शुद्धि",
     description: "Iterating with precision until every detail resonates.",
     icon: Sparkles,
-    size: "large",
   },
   {
-    number: "05",
+    roman: "V",
     title: "Evolve",
     sanskrit: "विकास",
     description: "Continuous improvement beyond completion, adapting and growing with every iteration.",
     icon: InfinityIcon,
-    size: "large",
   },
 ]
 
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" })
-  const [hoveredStep, setHoveredStep] = useState<number | null>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" })
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  })
 
   return (
-    <section id="process" className="relative py-32 px-6 overflow-hidden">
-      {/* Ancient texture overlay */}
+    <section id="process" className="relative py-32 px-6 overflow-hidden bg-background">
+      {/* Background Texture Overlay */}
       <div
-        className="absolute inset-0 opacity-[0.015] pointer-events-none"
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Vignette effect */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(13,26,26,0.4)_100%)]" />
-
-      {/* Decorative corner ornaments */}
-      <div className="absolute top-8 left-8 w-16 h-16 opacity-10">
-        <svg viewBox="0 0 100 100" className="w-full h-full text-accent">
-          <path d="M0,50 Q0,0 50,0 M50,0 Q100,0 100,50" fill="none" stroke="currentColor" strokeWidth="1" />
-          <circle cx="50" cy="0" r="3" fill="currentColor" />
-        </svg>
-      </div>
-      <div className="absolute top-8 right-8 w-16 h-16 opacity-10 rotate-90">
-        <svg viewBox="0 0 100 100" className="w-full h-full text-accent">
-          <path d="M0,50 Q0,0 50,0 M50,0 Q100,0 100,50" fill="none" stroke="currentColor" strokeWidth="1" />
-          <circle cx="50" cy="0" r="3" fill="currentColor" />
-        </svg>
-      </div>
-
-      <div ref={containerRef} className="relative max-w-6xl mx-auto">
-        <SectionTitle subtitle="Process" title="How I" highlight="Work" isInView={isInView} />
-
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mt-16">
-          {processSteps.map((step, index) => {
-            const Icon = step.icon
-            const isHovered = hoveredStep === index
-            const isLarge = step.size === "large"
-
-            return (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ duration: 0.7, delay: 0.2 + index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                onMouseEnter={() => setHoveredStep(index)}
-                onMouseLeave={() => setHoveredStep(null)}
-                className={`relative group cursor-pointer ${isLarge ? "lg:col-span-2 lg:row-span-1" : "lg:col-span-1"}`}
-              >
-                <motion.div
-                  className="relative h-full min-h-[280px] lg:min-h-[320px] p-6 lg:p-8 rounded-2xl overflow-hidden"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(18,36,36,0.9) 0%, rgba(13,26,26,0.95) 100%)",
-                  }}
-                  animate={{
-                    y: isHovered ? -8 : 0,
-                    scale: isHovered ? 1.02 : 1,
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {/* Animated border */}
-                  <div className="absolute inset-0 rounded-2xl border border-border/30 group-hover:border-accent/40 transition-colors duration-500" />
-
-                  {/* Glowing border on hover */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      boxShadow: "inset 0 0 30px rgba(201,169,98,0.1), 0 0 40px rgba(201,169,98,0.05)",
-                    }}
-                  />
-
-                  {/* Ancient corner accents */}
-                  <motion.div
-                    className="absolute top-3 left-3 w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                    animate={{ rotate: isHovered ? 0 : -90, scale: isHovered ? 1 : 0.5 }}
-                  >
-                    <svg viewBox="0 0 32 32" className="w-full h-full text-accent/60">
-                      <path d="M0,16 Q0,0 16,0" fill="none" stroke="currentColor" strokeWidth="1" />
-                      <circle cx="0" cy="16" r="2" fill="currentColor" />
-                      <circle cx="16" cy="0" r="2" fill="currentColor" />
-                    </svg>
-                  </motion.div>
-                  <motion.div
-                    className="absolute bottom-3 right-3 w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-500 rotate-180"
-                    animate={{ rotate: isHovered ? 180 : 270, scale: isHovered ? 1 : 0.5 }}
-                  >
-                    <svg viewBox="0 0 32 32" className="w-full h-full text-accent/60">
-                      <path d="M0,16 Q0,0 16,0" fill="none" stroke="currentColor" strokeWidth="1" />
-                      <circle cx="0" cy="16" r="2" fill="currentColor" />
-                      <circle cx="16" cy="0" r="2" fill="currentColor" />
-                    </svg>
-                  </motion.div>
-
-                  {/* Step number - ancient numeral style */}
-                  <motion.div
-                    className="absolute top-4 right-4 font-mono text-6xl lg:text-7xl font-bold text-accent/10 select-none"
-                    animate={{
-                      opacity: isHovered ? 0.25 : 0.1,
-                      scale: isHovered ? 1.1 : 1,
-                      y: isHovered ? -5 : 0,
-                    }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    {step.number}
-                  </motion.div>
-
-                  {/* Sanskrit character - ancient touch */}
-                  <motion.span
-                    className="absolute bottom-4 right-4 font-serif text-3xl text-accent/20 select-none"
-                    animate={{
-                      opacity: isHovered ? 0.4 : 0.2,
-                      y: isHovered ? -3 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {step.sanskrit}
-                  </motion.span>
-
-                  {/* Icon with glow effect */}
-                  <motion.div
-                    className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                    style={{
-                      background: isHovered
-                        ? "linear-gradient(135deg, rgba(201,169,98,0.15) 0%, rgba(201,169,98,0.05) 100%)"
-                        : "rgba(42,64,64,0.5)",
-                    }}
-                    animate={{
-                      boxShadow: isHovered
-                        ? "0 0 25px rgba(201,169,98,0.2), inset 0 0 15px rgba(201,169,98,0.1)"
-                        : "none",
-                    }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <Icon
-                      className={`w-6 h-6 transition-all duration-400 ${isHovered ? "text-accent" : "text-muted-foreground"
-                        }`}
-                    />
-                    {/* Rotating ring on hover */}
-                    <motion.div
-                      className="absolute inset-0 rounded-xl border border-accent/30 opacity-0"
-                      animate={{
-                        opacity: isHovered ? 1 : 0,
-                        rotate: isHovered ? 90 : 0,
-                        scale: isHovered ? 1.15 : 1,
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  </motion.div>
-
-                  {/* Content */}
-                  <div className="relative">
-                    <motion.h3
-                      className="font-serif text-2xl lg:text-3xl text-foreground mb-3"
-                      animate={{ x: isHovered ? 4 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {step.title}
-                      {/* Underline animation */}
-                      <motion.span
-                        className="block h-px bg-linear-to-r from-accent to-transparent mt-2"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: isHovered ? 1 : 0 }}
-                        style={{ originX: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                      />
-                    </motion.h3>
-                    <motion.p
-                      className="text-muted-foreground leading-relaxed text-sm lg:text-base"
-                      animate={{ opacity: isHovered ? 1 : 0.8 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {step.description}
-                    </motion.p>
-                  </div>
-
-                  {/* Decorative line pattern - ancient manuscript feel */}
-                  <div className="absolute bottom-0 left-0 right-0 h-px">
-                    <motion.div
-                      className="h-full bg-linear-to-r from-transparent via-accent/40 to-transparent"
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{
-                        scaleX: isHovered ? 1 : 0,
-                        opacity: isHovered ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-            )
-          })}
+      <div className="relative max-w-5xl mx-auto z-10 w-full">
+        <div ref={headerRef}>
+          <SectionTitle subtitle="Process" title="How I" highlight="Work" isInView={isHeaderInView} />
         </div>
 
-        {/* Bottom Statement with ancient styling */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20 text-center relative"
-        >
-          {/* Decorative mandala-inspired element */}
-          <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-16 h-16 opacity-20">
-            <svg viewBox="0 0 64 64" className="w-full h-full text-accent">
-              <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              <circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              <circle cx="32" cy="32" r="10" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              <circle cx="32" cy="32" r="3" fill="currentColor" />
-            </svg>
+        <div ref={containerRef} className="relative mt-24 mb-32">
+          {/* Central Golden Thread Background */}
+          <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-px bg-accent/10 -translate-x-1/2" />
+          
+          {/* Animated Central Golden Thread */}
+          <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 overflow-hidden flex justify-center">
+            <motion.div 
+              className="w-full h-full bg-linear-to-b from-accent to-accent/50 origin-top shadow-[0_0_15px_rgba(201,169,98,0.5)]"
+              style={{ scaleY: scrollYProgress }}
+            />
           </div>
 
-          <div className="inline-flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent/50" />
-              <div className="w-16 h-px bg-linear-to-r from-accent/50 to-transparent" />
+          <div className="space-y-16 lg:space-y-32">
+            {processSteps.map((step, index) => {
+              const Icon = step.icon
+              const isEven = index % 2 === 0
+              return (
+                <ProcessCard key={step.roman} step={step} isEven={isEven} Icon={Icon} index={index} />
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ProcessCard({ step, isEven, Icon, index }: any) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(cardRef, { once: true, margin: "-150px" })
+  
+  // Triggers exactly when the card crosses the center of the viewport (matching the golden thread)
+  const isHit = useInView(cardRef, { margin: "0px 0px -50% 0px" })
+  
+  const [isHovered, setIsHovered] = useState(false)
+  const isActive = isHovered || isHit
+
+  return (
+    <div 
+      ref={cardRef} 
+      className={`relative flex items-center md:gap-16 group ${isEven ? 'row' : 'md:flex-row-reverse flex-row'}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Timeline Node */}
+      <motion.div 
+        className="absolute left-[24px] md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-accent z-10 shadow-[0_0_15px_rgba(201,169,98,0.5)] flex items-center justify-center transition-colors duration-500"
+        initial={{ backgroundColor: "rgba(13,26,26,1)" }}
+        animate={isActive ? { backgroundColor: "rgba(201,169,98,0.2)" } : { backgroundColor: "rgba(13,26,26,1)" }}
+      >
+        <motion.div 
+          className="w-1.5 h-1.5 bg-accent rounded-full" 
+          initial={{ scale: 0 }}
+          animate={isActive ? { scale: [1, 1.5, 1], opacity: [1, 0.5, 1] } : { scale: 0 }}
+          transition={isActive ? { duration: 2, repeat: Infinity } : {}}
+        />
+      </motion.div>
+
+      {/* Empty space for alternating layout on desktop */}
+      <div className="hidden md:block w-1/2" />
+
+      {/* Card Content (Astrolabe Style Design logic merged into Scrolls Layout) */}
+      <div className={`relative w-full md:w-1/2 ml-16 md:ml-0 ${isEven ? 'md:pr-12 lg:pr-16 text-left md:text-right' : 'md:pl-12 lg:pl-16 text-left'}`}>
+        <motion.div 
+          className="relative min-h-[280px] p-8 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 ease-out border shadow-black/50"
+          initial={{ opacity: 0, y: 50, rotateX: -10 }}
+          animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{
+            background: isActive 
+              ? "linear-gradient(135deg, rgba(201,169,98,0.1) 0%, rgba(13,26,26,0.95) 100%)" 
+              : "linear-gradient(135deg, rgba(18,36,36,0.9) 0%, rgba(13,26,26,0.95) 100%)",
+            borderColor: isActive ? "rgba(201,169,98,0.4)" : "rgba(201,169,98,0.1)"
+          }}
+        >
+          {/* Glowing Outline Box SVG mapping on hover */}
+          <svg className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-700 ease-out ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} fill="none">
+            <rect x="12" y="12" width="calc(100% - 24px)" height="calc(100% - 24px)" stroke="rgba(201,169,98,0.3)" strokeWidth="1" rx="8" strokeDasharray="4 6" />
+            <circle cx="12" cy="12" r="3" fill="rgba(201,169,98,0.5)" />
+            <circle cx="calc(100% - 12px)" cy="12" r="3" fill="rgba(201,169,98,0.5)" />
+            <circle cx="12" cy="calc(100% - 12px)" r="3" fill="rgba(201,169,98,0.5)" />
+            <circle cx="calc(100% - 12px)" cy="calc(100% - 12px)" r="3" fill="rgba(201,169,98,0.5)" />
+          </svg>
+
+          {/* Giant Faded Sanskrit Background Letter */}
+          <div className={`absolute -bottom-10 select-none pointer-events-none z-0 ${isEven ? 'md:-left-6 -right-6' : '-right-6'}`}>
+            <span className={`font-serif text-[12rem] leading-none transition-all duration-1000 ${isActive ? 'text-accent/10 scale-110 rotate-12' : 'text-accent/5 scale-100 rotate-0'}`}>
+              {step.sanskrit.charAt(0)}
+            </span>
+          </div>
+
+          {/* Glowing Embers */}
+          {isActive && (
+            <motion.div 
+              className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl"
+            >
+              {[0, 1, 2, 3].map(i => (
+                <motion.div
+                  key={`ember-${i}`}
+                  className="absolute bottom-4 w-1.5 h-1.5 bg-accent rounded-full blur-[1px]"
+                  style={{ left: `${20 + Math.random() * 60}%` }}
+                  animate={{ 
+                    y: [0, -100 - Math.random() * 50],
+                    x: [0, (Math.random() - 0.5) * 40],
+                    opacity: [0, 0.8, 0]
+                  }}
+                  transition={{ duration: 2 + Math.random(), repeat: Infinity, delay: Math.random() * 1.5 }}
+                />
+              ))}
+            </motion.div>
+          )}
+
+          <div className="relative z-10 flex flex-col h-full justify-between">
+            <div className={`flex items-start ${isEven ? 'md:flex-row-reverse flex-row justify-between' : 'justify-between'}`}>
+              <div className={`p-4 rounded-xl transition-all duration-500 ${isActive ? 'bg-accent/20 text-accent shadow-[0_0_20px_rgba(201,169,98,0.3)]' : 'bg-primary/20 text-muted-foreground'}`}>
+                <Icon className="w-8 h-8" strokeWidth={1.5} />
+              </div>
+              <span className={`font-serif text-5xl font-light text-muted-foreground/30 ${isEven ? 'md:mr-auto md:ml-0 ml-auto' : ''}`}>{step.roman}</span>
             </div>
-            <p className="font-serif text-lg md:text-xl text-muted-foreground italic">
-              "Good process creates space for great work."
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="w-16 h-px bg-linear-to-l from-accent/50 to-transparent" />
-              <span className="w-2 h-2 rounded-full bg-accent/50" />
+
+            <div className={`mt-10 ${isEven ? 'md:text-right text-left' : 'text-left'}`}>
+              <span className="text-accent tracking-[0.3em] text-xs uppercase block mb-3 opacity-80">{step.sanskrit}</span>
+              <h3 className="text-2xl font-serif text-foreground mb-3">{step.title}</h3>
+              <p className="text-muted-foreground/80 leading-relaxed font-light text-[15px]">
+                {step.description}
+              </p>
             </div>
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }

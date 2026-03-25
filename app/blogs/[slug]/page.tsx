@@ -400,7 +400,7 @@ export default function BlogPage() {
           className="flex justify-center mt-16"
         >
           <div className="flex items-center gap-4">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent/40" />
+            <div className="w-12 h-px bg-linear-to-r from-transparent to-accent/40" />
             <span className="font-serif text-accent/40 text-2xl">॥</span>
             <div className="w-12 h-px bg-gradient-to-l from-transparent to-accent/40" />
           </div>

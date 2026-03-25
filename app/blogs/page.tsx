@@ -188,11 +188,10 @@ export default function BlogsPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-1.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 border ${
-                  activeCategory === cat
+                className={`px-5 py-1.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 border ${activeCategory === cat
                     ? "border-accent/50 bg-accent/10 text-accent"
                     : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -251,7 +250,7 @@ function FeaturedCard({ blog }: { blog: (typeof blogs)[0] }) {
           <div className={`absolute inset-0 bg-gradient-to-br from-primary/6 via-transparent to-accent/3 transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           {/* Top hairline */}
-          <div className={`absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent transition-opacity duration-500 z-10 ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent transition-opacity duration-500 z-10 ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           <div className="relative grid md:grid-cols-2">
             {/* Image side */}
@@ -262,7 +261,7 @@ function FeaturedCard({ blog }: { blog: (typeof blogs)[0] }) {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card md:bg-gradient-to-r md:from-transparent md:to-card" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-card md:bg-linear-to-r md:from-transparent md:to-card" />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
               {/* Corner ornaments */}
               <div className={`absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-accent/60 transition-all duration-500 ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-75"}`} />
@@ -334,7 +333,7 @@ function SmallCard({ blog, index }: { blog: (typeof blogs)[0]; index: number }) 
           </div>
 
           <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
-          <div className={`absolute top-44 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute top-44 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           <div className="relative flex flex-col h-[calc(100%-11rem)] gap-4 p-6">
             <div className="flex items-center gap-3">

@@ -176,7 +176,7 @@ export default function ContactPage() {
 
               {/* Glowing accent line at top */}
               <motion.div
-                className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+                className="absolute top-0 left-8 right-8 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
@@ -274,7 +274,7 @@ export default function ContactPage() {
                     />
                     {/* Focus accent line */}
                     <motion.div
-                      className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+                      className="absolute bottom-0 left-4 right-4 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent"
                       initial={{ scaleX: 0, opacity: 0 }}
                       animate={{
                         scaleX: focusedField === "message" ? 1 : 0,
@@ -297,7 +297,7 @@ export default function ContactPage() {
                   whileTap={!isSubmitting && !isSubmitted ? { scale: 0.98 } : {}}
                 >
                   {/* Hover shimmer */}
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 
                   {isSubmitting ? (
                     <>
@@ -447,7 +447,7 @@ export default function ContactPage() {
               className="text-center pt-4"
             >
               <div className="inline-flex items-center gap-4">
-                <div className="w-8 h-px bg-gradient-to-r from-transparent to-accent/40" />
+                <div className="w-8 h-px bg-linear-to-r from-transparent to-accent/40" />
                 <p className="font-serif text-sm text-muted-foreground/60 italic">
                   "संवाद — the art of meaningful exchange"
                 </p>
@@ -525,7 +525,7 @@ function FormField({
         />
         {/* Focus accent line */}
         <motion.div
-          className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+          className="absolute bottom-0 left-4 right-4 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent"
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{
             scaleX: focused ? 1 : 0,

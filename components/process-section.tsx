@@ -177,9 +177,8 @@ export function ProcessSection() {
                     transition={{ duration: 0.4 }}
                   >
                     <Icon
-                      className={`w-6 h-6 transition-all duration-400 ${
-                        isHovered ? "text-accent" : "text-muted-foreground"
-                      }`}
+                      className={`w-6 h-6 transition-all duration-400 ${isHovered ? "text-accent" : "text-muted-foreground"
+                        }`}
                     />
                     {/* Rotating ring on hover */}
                     <motion.div
@@ -203,7 +202,7 @@ export function ProcessSection() {
                       {step.title}
                       {/* Underline animation */}
                       <motion.span
-                        className="block h-px bg-gradient-to-r from-accent to-transparent mt-2"
+                        className="block h-px bg-linear-to-r from-accent to-transparent mt-2"
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: isHovered ? 1 : 0 }}
                         style={{ originX: 0 }}
@@ -222,7 +221,7 @@ export function ProcessSection() {
                   {/* Decorative line pattern - ancient manuscript feel */}
                   <div className="absolute bottom-0 left-0 right-0 h-px">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+                      className="h-full bg-linear-to-r from-transparent via-accent/40 to-transparent"
                       initial={{ scaleX: 0, opacity: 0 }}
                       animate={{
                         scaleX: isHovered ? 1 : 0,
@@ -257,7 +256,7 @@ export function ProcessSection() {
           <div className="inline-flex items-center gap-6">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent/50" />
-              <div className="w-16 h-px bg-gradient-to-r from-accent/50 to-transparent" />
+              <div className="w-16 h-px bg-linear-to-r from-accent/50 to-transparent" />
             </div>
             <p className="font-serif text-lg md:text-xl text-muted-foreground italic">
               "Good process creates space for great work."

@@ -133,7 +133,7 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
 
             {/* ─── Top ornamental border ─── */}
             <motion.div
-              className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+              className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-accent/40 to-transparent"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -181,16 +181,14 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
                       <Link
                         href={item.href}
                         onClick={onClose}
-                        className={`group relative flex items-center gap-4 py-3.5 px-4 rounded-xl transition-all duration-300 ${
-                          isActive
+                        className={`group relative flex items-center gap-4 py-3.5 px-4 rounded-xl transition-all duration-300 ${isActive
                             ? "bg-primary/10 border border-primary/20 text-foreground"
                             : "text-muted-foreground hover:text-foreground hover:bg-card/40"
-                        }`}
+                          }`}
                       >
                         {/* Active indicator dot */}
-                        <span className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                          isActive ? "bg-accent scale-100 shadow-[0_0_8px_rgba(201,169,98,0.4)]" : "bg-border/50 scale-75 group-hover:bg-muted-foreground group-hover:scale-100"
-                        }`} />
+                        <span className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? "bg-accent scale-100 shadow-[0_0_8px_rgba(201,169,98,0.4)]" : "bg-border/50 scale-75 group-hover:bg-muted-foreground group-hover:scale-100"
+                          }`} />
 
                         {/* Step number — ancient numeral style */}
                         <span className="font-mono text-[10px] text-accent/40 w-4">{String(index + 1).padStart(2, "0")}</span>
@@ -201,7 +199,7 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
                         {/* Active underline */}
                         {isActive && (
                           <motion.div
-                            className="absolute bottom-1 left-10 right-10 h-px bg-gradient-to-r from-accent/30 via-accent/10 to-transparent"
+                            className="absolute bottom-1 left-10 right-10 h-px bg-linear-to-r from-accent/30 via-accent/10 to-transparent"
                             layoutId="sidebar-active-line"
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
                           />
@@ -221,13 +219,13 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
                   transition={{ delay: 0.8, duration: 0.6 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+                  <div className="flex-1 h-px bg-linear-to-r from-transparent via-border/50 to-transparent" />
                   <svg width="20" height="20" viewBox="0 0 20 20" className="text-accent/30">
                     <circle cx="10" cy="10" r="3" fill="none" stroke="currentColor" strokeWidth="0.5" />
                     <circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" strokeWidth="0.3" />
                     <circle cx="10" cy="10" r="1.5" fill="currentColor" />
                   </svg>
-                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+                  <div className="flex-1 h-px bg-linear-to-r from-transparent via-border/50 to-transparent" />
                 </motion.div>
 
                 {/* CTA Button */}
@@ -260,7 +258,7 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
 
             {/* ─── Bottom ornamental border ─── */}
             <motion.div
-              className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"
+              className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-accent/30 to-transparent"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}

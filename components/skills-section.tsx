@@ -47,7 +47,7 @@ export function SkillsSection() {
           initial={{ scale: 0, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative z-10 w-40 h-40 mx-auto mb-16 rounded-full bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/30 flex items-center justify-center"
+          className="relative z-10 w-40 h-40 mx-auto mb-16 rounded-full bg-linear-to-br from-primary/20 to-accent/10 border border-primary/30 flex items-center justify-center"
         >
           <div className="text-center">
             <span className="font-serif text-3xl font-light text-foreground">अनंत</span>
@@ -76,11 +76,10 @@ export function SkillsSection() {
               transition={{ duration: 0.6, delay: 0.4 + categoryIndex * 0.15 }}
               onMouseEnter={() => setHoveredCategory(categoryIndex)}
               onMouseLeave={() => setHoveredCategory(null)}
-              className={`relative p-6 lg:p-8 rounded-2xl bg-card/50 backdrop-blur-sm border transition-all duration-500 ${
-                hoveredCategory === categoryIndex
-                  ? "border-primary/50 shadow-lg shadow-primary/10 -translate-y-1"
-                  : "border-border/50"
-              }`}
+              className={`relative p-6 lg:p-8 rounded-2xl bg-card/50 backdrop-blur-sm border transition-all duration-500 ${hoveredCategory === categoryIndex
+                ? "border-primary/50 shadow-lg shadow-primary/10 -translate-y-1"
+                : "border-border/50"
+                }`}
             >
               {/* Category Title */}
               <div className="flex items-center gap-3 mb-5">
@@ -103,13 +102,12 @@ export function SkillsSection() {
                       duration: 0.4,
                       delay: 0.6 + categoryIndex * 0.15 + skillIndex * 0.05,
                     }}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      hoveredCategory === categoryIndex
-                        ? category.color === "primary"
-                          ? "bg-primary/20 text-primary border border-primary/30"
-                          : "bg-accent/20 text-accent border border-accent/30"
-                        : "bg-muted/50 text-muted-foreground border border-transparent"
-                    }`}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${hoveredCategory === categoryIndex
+                      ? category.color === "primary"
+                        ? "bg-primary/20 text-primary border border-primary/30"
+                        : "bg-accent/20 text-accent border border-accent/30"
+                      : "bg-muted/50 text-muted-foreground border border-transparent"
+                      }`}
                   >
                     {skill}
                   </motion.span>
@@ -118,9 +116,8 @@ export function SkillsSection() {
 
               {/* Decorative Line */}
               <motion.div
-                className={`absolute bottom-0 left-6 right-6 h-px ${
-                  category.color === "primary" ? "bg-primary/30" : "bg-accent/30"
-                }`}
+                className={`absolute bottom-0 left-6 right-6 h-px ${category.color === "primary" ? "bg-primary/30" : "bg-accent/30"
+                  }`}
                 initial={{ scaleX: 0 }}
                 animate={hoveredCategory === categoryIndex ? { scaleX: 1 } : { scaleX: 0 }}
                 transition={{ duration: 0.4 }}

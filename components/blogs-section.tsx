@@ -163,11 +163,10 @@ export function BlogsSection() {
                   aria-label={`Go to slide ${i + 1}`}
                 >
                   <div
-                    className={`absolute inset-0 transition-colors duration-500 ${
-                      i === current
+                    className={`absolute inset-0 transition-colors duration-500 ${i === current
                         ? "bg-accent"
                         : "bg-border hover:bg-muted-foreground"
-                    }`}
+                      }`}
                   />
                   {i === current && (
                     <div className="absolute inset-0 bg-accent/40 blur-sm" />
@@ -262,7 +261,7 @@ function BlogCard({ blog, index, numeral }: { blog: (typeof blogs)[0]; index: nu
           <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           {/* Top hairline accent */}
-          <div className={`absolute top-44 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute top-44 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           <div className="relative flex flex-col h-[calc(100%-11rem)] gap-4 p-6">
             {/* Meta row */}

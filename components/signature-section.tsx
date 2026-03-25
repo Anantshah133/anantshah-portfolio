@@ -35,12 +35,12 @@ export function SignatureSection() {
     <section id="signature" className="relative py-32 px-6 overflow-hidden bg-muted/20">
       <div ref={containerRef} className="relative max-w-6xl mx-auto">
         <SectionTitle subtitle="Transformation" title="The Anant" highlight="Difference" isInView={isInView} />
-        
+
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={isInView ? { opacity: 1, y: 0 } : {}}
-           transition={{ duration: 0.8, delay: 0.4 }}
-           className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mb-16"
         >
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
             Drag the slider to see how I transform digital experiences
@@ -53,7 +53,7 @@ export function SignatureSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
           ref={sliderRef}
-          className="relative aspect-[16/10] md:aspect-[16/9] rounded-2xl overflow-hidden cursor-ew-resize select-none border border-border/50 shadow-2xl shadow-primary/10"
+          className="relative aspect-16/10 md:aspect-video rounded-2xl overflow-hidden cursor-ew-resize select-none border border-border/50 shadow-2xl shadow-primary/10"
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
@@ -66,7 +66,7 @@ export function SignatureSection() {
               {/* Old Website Mock */}
               <div className="h-full rounded-lg bg-[#16213e] border border-[#0f3460]/50 overflow-hidden">
                 {/* Old Header */}
-                <div className="h-12 md:h-16 bg-gradient-to-r from-[#e94560] to-[#0f3460] flex items-center px-4 gap-2">
+                <div className="h-12 md:h-16 bg-linear-to-r from-[#e94560] to-[#0f3460] flex items-center px-4 gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500" />
                   <div className="w-3 h-3 rounded-full bg-green-500" />
@@ -84,7 +84,7 @@ export function SignatureSection() {
                       CONTACT
                     </div>
                   </div>
-                  <div className="h-24 md:h-32 bg-gradient-to-r from-[#0f3460] to-[#e94560] rounded flex items-center justify-center">
+                  <div className="h-24 md:h-32 bg-linear-to-r from-[#0f3460] to-[#e94560] rounded flex items-center justify-center">
                     <span className="text-white/60 text-xs md:text-sm">[ Image Not Found ]</span>
                   </div>
                   <div className="space-y-2">
@@ -130,7 +130,7 @@ export function SignatureSection() {
                       <span className="italic text-primary">Experiences</span>
                     </h3>
                   </div>
-                  <div className="h-24 md:h-32 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/20 flex items-center justify-center">
+                  <div className="h-24 md:h-32 rounded-lg bg-linear-to-br from-primary/20 to-accent/10 border border-primary/20 flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary/30 mx-auto mb-2 flex items-center justify-center">
                         <span className="text-lg md:text-2xl">✦</span>

@@ -28,7 +28,7 @@ const socialLinks = [
 const contactInfo = [
   { icon: Mail, label: "Email", value: "dev.anantshah@gmail.com", href: "mailto:dev.anantshah@gmail.com" },
   { icon: Phone, label: "Phone", value: "+91 99245 90125", href: "tel:+919924590125" },
-  { icon: MapPin, label: "Location", value: "Surat, Gujarat, India", href: null },
+  { icon: MapPin, label: "Location", value: "Surat, Gujarat, India", href: "https://maps.app.goo.gl/yjfNpsw3c968gQE76" },
 ]
 
 export default function ContactPage() {
@@ -332,6 +332,10 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-2 space-y-8"
           >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <h4 className="font-serif text-lg text-foreground">Contact Information</h4>
+            </div>
             {/* Contact Info Cards */}
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
@@ -376,7 +380,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.7 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full bg-primary" />
+                <div className="w-2 h-2 rounded-full bg-accent" />
                 <h4 className="font-serif text-lg text-foreground">Connect</h4>
               </div>
               <div className="flex items-center gap-3">

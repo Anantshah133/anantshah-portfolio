@@ -189,8 +189,8 @@ export default function BlogsPage() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-1.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 border ${activeCategory === cat
-                    ? "border-accent/50 bg-accent/10 text-accent"
-                    : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  ? "border-accent/50 bg-accent/10 text-accent"
+                  : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
                   }`}
               >
                 {cat}
@@ -247,7 +247,7 @@ function FeaturedCard({ blog }: { blog: (typeof blogs)[0] }) {
       <Link href={`/blogs/${blog.slug}`}>
         <div className="relative border border-border rounded-xl overflow-hidden bg-card/40 backdrop-blur-sm transition-all duration-500 hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_30px_80px_-20px_rgba(13,26,26,0.9)]">
           {/* Ambient glow */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-primary/6 via-transparent to-accent/3 transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute inset-0 bg-linear-to-br from-primary/6 via-transparent to-accent/3 transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           {/* Top hairline */}
           <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent transition-opacity duration-500 z-10 ${hovered ? "opacity-100" : "opacity-0"}`} />
@@ -262,7 +262,7 @@ function FeaturedCard({ blog }: { blog: (typeof blogs)[0] }) {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-card md:bg-linear-to-r md:from-transparent md:to-card" />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:hidden" />
+              <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent md:hidden" />
               {/* Corner ornaments */}
               <div className={`absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-accent/60 transition-all duration-500 ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-75"}`} />
               <div className={`absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-accent/60 transition-all duration-500 ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-75"}`} />
@@ -323,7 +323,7 @@ function SmallCard({ blog, index }: { blog: (typeof blogs)[0]; index: number }) 
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-card via-card/40 to-transparent" />
             <span className="absolute top-4 right-5 font-serif text-4xl font-light text-white/20 select-none transition-colors duration-500 group-hover:text-accent/30 leading-none drop-shadow-lg">
               {numerals[index] ?? ""}
             </span>
@@ -332,7 +332,7 @@ function SmallCard({ blog, index }: { blog: (typeof blogs)[0]; index: number }) 
             <div className={`absolute top-3 right-3 w-4 h-4 border-r border-t border-accent/60 transition-all duration-500 ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-75"}`} />
           </div>
 
-          <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
           <div className={`absolute top-44 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           <div className="relative flex flex-col h-[calc(100%-11rem)] gap-4 p-6">

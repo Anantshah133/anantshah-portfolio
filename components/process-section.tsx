@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { SectionTitle } from "./section-title"
-import { Headphones, Lightbulb, PenTool, Sparkles } from "lucide-react"
+import { Headphones, Lightbulb, PenTool, Sparkles, Infinity as InfinityIcon } from "lucide-react"
 
 const processSteps = [
   {
@@ -12,7 +12,7 @@ const processSteps = [
     sanskrit: "श्रवण",
     description: "Understanding your vision, constraints, and the story you want to tell.",
     icon: Headphones,
-    size: "large", // Bento grid size
+    size: "medium", // Bento grid size
   },
   {
     number: "02",
@@ -20,7 +20,7 @@ const processSteps = [
     sanskrit: "सार",
     description: "Stripping away noise to find the essential elements that matter.",
     icon: Lightbulb,
-    size: "medium",
+    size: "large",
   },
   {
     number: "03",
@@ -36,6 +36,14 @@ const processSteps = [
     sanskrit: "शुद्धि",
     description: "Iterating with precision until every detail resonates.",
     icon: Sparkles,
+    size: "large",
+  },
+  {
+    number: "05",
+    title: "Evolve",
+    sanskrit: "विकास",
+    description: "Continuous improvement beyond completion, adapting and growing with every iteration.",
+    icon: InfinityIcon,
     size: "large",
   },
 ]
@@ -262,7 +270,7 @@ export function ProcessSection() {
               "Good process creates space for great work."
             </p>
             <div className="flex items-center gap-2">
-              <div className="w-16 h-px bg-gradient-to-l from-accent/50 to-transparent" />
+              <div className="w-16 h-px bg-linear-to-l from-accent/50 to-transparent" />
               <span className="w-2 h-2 rounded-full bg-accent/50" />
             </div>
           </div>

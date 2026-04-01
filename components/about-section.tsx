@@ -13,11 +13,11 @@ const experience = [
     company: "Red & White Skill Education",
     location: "Surat",
     bullets: [
-      "Architected and built full-stack web applications using React, Next.js, Node.js, and MySQL.",
-      "Led development of an internal Learning Management System (LMS) serving 1,000+ students.",
-      "Designed RESTful APIs and integrated third-party payment gateways and SMS services.",
-      "Mentored junior developers and conducted weekly code review sessions.",
-      "Improved application performance by 40% through query optimization and caching strategies.",
+      "Taught students full-stack web development using the MERN stack, covering fundamentals to building real-world applications.",
+      "Guided students in developing CRUD-based projects and understanding core backend concepts like APIs and database design.",
+      "Built and demonstrated practical projects to simplify complex concepts and improve student understanding.",
+      "Managed and contributed to social media presence and Google My Business (GMB) to improve visibility and engagement.",
+      "Handled day-to-day operational and ground-level management tasks to support smooth execution of training programs.",
     ],
   },
   {
@@ -27,11 +27,11 @@ const experience = [
     company: "Pragma Infotech",
     location: "Surat",
     bullets: [
-      "Developed and maintained client-facing PHP/Laravel web applications.",
-      "Built dynamic UI components using HTML, CSS, Bootstrap, and jQuery.",
-      "Integrated MySQL databases, wrote stored procedures and optimized slow queries.",
-      "Collaborated with the design team to implement pixel-perfect responsive layouts.",
-      "Participated in Agile sprints and daily standups to deliver features on schedule.",
+      "Worked on developing and maintaining web applications using PHP and Laravel.",
+      "Built responsive UI components using HTML, CSS, Bootstrap, and basic JavaScript/jQuery.",
+      "Integrated MySQL database operations including CRUD functionality and query optimization.",
+      "Assisted in debugging and fixing issues to improve application stability.",
+      "Collaborated with team members to deliver features within given timelines.",
     ],
   },
 ]

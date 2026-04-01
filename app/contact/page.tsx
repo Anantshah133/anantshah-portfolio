@@ -51,6 +51,8 @@ export default function ContactPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    // Dispatch custom event so the bird companion can react to typing
+    window.dispatchEvent(new CustomEvent("bird-typing"))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -254,7 +256,7 @@ export default function ContactPage() {
 
                 {/* Message */}
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground/80 font-serif tracking-wide">
+                  <label className="block text-base font-medium text-foreground/80 font-serif tracking-wide">
                     Message
                   </label>
                   <div className={`relative rounded-xl transition-all duration-500 ${focusedField === "message"
@@ -417,7 +419,7 @@ export default function ContactPage() {
 
               <div className="relative rounded-xl overflow-hidden border border-border/30 group">
                 {/* Map iframe */}
-                <div className="aspect-[4/3] relative">
+                <div className="aspect-4/3 relative">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.41709451063!2d72.73988483609048!3d21.15934029880327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e59411d1563%3A0xfe4558290938b042!2sSurat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1774360308124!5m2!1sen!2sin"
                     className="absolute inset-0 w-full h-full"
@@ -455,7 +457,7 @@ export default function ContactPage() {
                 <p className="font-serif text-sm text-muted-foreground/60 italic">
                   "संवाद — the art of meaningful exchange"
                 </p>
-                <div className="w-8 h-px bg-gradient-to-l from-transparent to-accent/40" />
+                <div className="w-8 h-px bg-linear-to-l from-transparent to-accent/40" />
               </div>
             </motion.div>
           </motion.div>
@@ -510,7 +512,7 @@ function FormField({
 }) {
   return (
     <div className="space-y-2">
-      <label htmlFor={name} className="block text-sm font-medium text-foreground/80 font-serif tracking-wide">
+      <label htmlFor={name} className="block text-base font-medium text-foreground/80 font-serif tracking-wide">
         {label}
       </label>
       <div className={`relative rounded-xl transition-all duration-500 ${focused ? "shadow-[0_0_20px_rgba(201,169,98,0.1)]" : ""

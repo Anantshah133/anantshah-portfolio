@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Plus_Jakarta_Sans, Cormorant_Garamond, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { BirdProvider } from "@/components/bird-provider"
+import { BirdCompanion } from "@/components/bird-companion"
 import "./globals.css"
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -36,8 +38,11 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${plusJakarta.variable} ${cormorant.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider defaultTheme="dark">
-          <div className="noise-overlay" />
-          {children}
+          <BirdProvider>
+            <div className="noise-overlay" />
+            <BirdCompanion />
+            {children}
+          </BirdProvider>
         </ThemeProvider>
         <Analytics />
       </body>

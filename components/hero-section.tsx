@@ -60,66 +60,267 @@ export function HeroSection() {
         />
       </div>
 
-      {/* ═══ 1. Sacred Geometry Ring ═══ */}
+      {/* ═══ 1. Mandala Chakra Background ═══ */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Outer ring — slow clockwise */}
-        <motion.div
-          className="absolute w-[500px] h-[500px] md:w-[650px] md:h-[650px] lg:w-[800px] lg:h-[800px]"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-        >
-          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none">
-            <circle cx="200" cy="200" r="195" stroke="rgba(201,169,98,0.06)" strokeWidth="0.5" />
-            <circle cx="200" cy="200" r="195" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" strokeDasharray="4 12" />
-            {/* Cardinal dots at N, E, S, W */}
-            <circle cx="200" cy="5" r="2" fill="rgba(201,169,98,0.15)" />
-            <circle cx="395" cy="200" r="2" fill="rgba(201,169,98,0.15)" />
-            <circle cx="200" cy="395" r="2" fill="rgba(201,169,98,0.15)" />
-            <circle cx="5" cy="200" r="2" fill="rgba(201,169,98,0.15)" />
-          </svg>
-        </motion.div>
 
-        {/* Middle ring — counter-clockwise */}
+        {/* Radial Golden Glow */}
+        <div
+          className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(201,169,98,0.08) 0%, rgba(201,169,98,0.03) 35%, rgba(201,169,98,0.01) 55%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Layer 1: Outermost Ring — Medallions + Arcs ── */}
         <motion.div
-          className="absolute w-[380px] h-[380px] md:w-[500px] md:h-[500px] lg:w-[620px] lg:h-[620px]"
-          animate={{ rotate: -360 }}
+          className="absolute w-[520px] h-[520px] md:w-[680px] md:h-[680px] lg:w-[840px] lg:h-[840px]"
+          animate={{ rotate: 360 }}
           transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
         >
-          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none">
-            <circle cx="200" cy="200" r="195" stroke="rgba(201,169,98,0.05)" strokeWidth="0.5" strokeDasharray="2 8" />
-            {/* 8 tick marks at 45-degree intervals */}
-            <line x1="200" y1="5" x2="200" y2="25" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="338" y1="62" x2="324" y2="76" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="395" y1="200" x2="375" y2="200" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="338" y1="338" x2="324" y2="324" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="200" y1="395" x2="200" y2="375" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="62" y1="338" x2="76" y2="324" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="5" y1="200" x2="25" y2="200" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
-            <line x1="62" y1="62" x2="76" y2="76" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
+          <svg viewBox="0 0 600 600" className="w-full h-full" fill="none" overflow="visible">
+            {/* Double outer circles */}
+            <circle cx="300" cy="300" r="292" stroke="rgba(201,169,98,0.08)" strokeWidth="0.7" />
+            <circle cx="300" cy="300" r="288" stroke="rgba(201,169,98,0.05)" strokeWidth="0.5" />
+            <circle cx="300" cy="300" r="282" stroke="rgba(201,169,98,0.04)" strokeWidth="0.4" strokeDasharray="4 8" />
+
+            {/* 8 Medallion nodes */}
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+              const rad = (angle * Math.PI) / 180
+              const cx = 300 + 290 * Math.cos(rad - Math.PI / 2)
+              const cy = 300 + 290 * Math.sin(rad - Math.PI / 2)
+              return (
+                <g key={`med-${angle}`}>
+                  <circle cx={cx.toFixed(2)} cy={cy.toFixed(2)} r="16" stroke="rgba(201,169,98,0.12)" strokeWidth="0.7" fill="rgba(201,169,98,0.02)" />
+                  <circle cx={cx.toFixed(2)} cy={cy.toFixed(2)} r="11" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5" />
+                  <circle cx={cx.toFixed(2)} cy={cy.toFixed(2)} r="4" fill="rgba(201,169,98,0.08)" />
+                  {/* Cross lines inside medallion */}
+                  <line x1={Number(cx.toFixed(2)) - 7} y1={cy.toFixed(2)} x2={Number(cx.toFixed(2)) + 7} y2={cy.toFixed(2)} stroke="rgba(201,169,98,0.05)" strokeWidth="0.3" />
+                  <line x1={cx.toFixed(2)} y1={Number(cy.toFixed(2)) - 7} x2={cx.toFixed(2)} y2={Number(cy.toFixed(2)) + 7} stroke="rgba(201,169,98,0.05)" strokeWidth="0.3" />
+                </g>
+              )
+            })}
+
+            {/* Connecting arcs between adjacent medallions */}
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
+              const nextAngle = (angle + 45) * Math.PI / 180
+              const curAngle = angle * Math.PI / 180
+              const r = 290
+              const x1 = 300 + r * Math.cos(curAngle - Math.PI / 2)
+              const y1 = 300 + r * Math.sin(curAngle - Math.PI / 2)
+              const x2 = 300 + r * Math.cos(nextAngle - Math.PI / 2)
+              const y2 = 300 + r * Math.sin(nextAngle - Math.PI / 2)
+              const midAngle = ((angle + 22.5) * Math.PI) / 180
+              const mx = 300 + 260 * Math.cos(midAngle - Math.PI / 2)
+              const my = 300 + 260 * Math.sin(midAngle - Math.PI / 2)
+              return (
+                <path
+                  key={`arc-${i}`}
+                  d={`M${x1.toFixed(2)},${y1.toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${x2.toFixed(2)},${y2.toFixed(2)}`}
+                  stroke="rgba(201,169,98,0.06)"
+                  strokeWidth="0.6"
+                  fill="none"
+                />
+              )
+            })}
+
+            {/* 16 radial tick marks between medallions */}
+            {Array.from({ length: 16 }).map((_, i) => {
+              const angle = i * 22.5
+              const rad = (angle * Math.PI) / 180
+              const x1 = 300 + 275 * Math.cos(rad - Math.PI / 2)
+              const y1 = 300 + 275 * Math.sin(rad - Math.PI / 2)
+              const x2 = 300 + 282 * Math.cos(rad - Math.PI / 2)
+              const y2 = 300 + 282 * Math.sin(rad - Math.PI / 2)
+              return <line key={`tick1-${i}`} x1={x1.toFixed(2)} y1={y1.toFixed(2)} x2={x2.toFixed(2)} y2={y2.toFixed(2)} stroke="rgba(201,169,98,0.06)" strokeWidth="0.4" />
+            })}
           </svg>
         </motion.div>
 
-        {/* Inner ring — slow clockwise */}
+        {/* ── Layer 2: Geometric Star Ring — 8pt + 16pt Stars ── */}
         <motion.div
-          className="absolute w-[260px] h-[260px] md:w-[350px] md:h-[350px] lg:w-[440px] lg:h-[440px]"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute w-[420px] h-[420px] md:w-[550px] md:h-[550px] lg:w-[680px] lg:h-[680px]"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
         >
-          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none">
-            <circle cx="200" cy="200" r="195" stroke="rgba(201,169,98,0.04)" strokeWidth="0.5" />
-            {/* Inscribed triangle */}
+          <svg viewBox="0 0 500 500" className="w-full h-full" fill="none" overflow="visible">
+            {/* Bounding circles */}
+            <circle cx="250" cy="250" r="240" stroke="rgba(201,169,98,0.08)" strokeWidth="0.6" />
+            <circle cx="250" cy="250" r="235" stroke="rgba(201,169,98,0.04)" strokeWidth="0.4" strokeDasharray="2 6" />
+
+            {/* 8-pointed star (two overlapping squares) */}
             <polygon
-              points="200,5 369,297.5 31,297.5"
-              fill="none"
-              stroke="rgba(201,169,98,0.04)"
-              strokeWidth="0.5"
+              points={Array.from({ length: 4 }).map((_, i) => {
+                const angle = i * 90
+                const rad = (angle * Math.PI) / 180
+                const x = 250 + 220 * Math.cos(rad - Math.PI / 2)
+                const y = 250 + 220 * Math.sin(rad - Math.PI / 2)
+                return `${x.toFixed(2)},${y.toFixed(2)}`
+              }).join(' ')}
+              fill="none" stroke="rgba(201,169,98,0.06)" strokeWidth="0.5"
             />
-            {/* Center dot */}
-            <circle cx="200" cy="200" r="3" fill="rgba(201,169,98,0.08)" />
-            <circle cx="200" cy="200" r="8" stroke="rgba(201,169,98,0.05)" strokeWidth="0.3" />
+            <polygon
+              points={Array.from({ length: 4 }).map((_, i) => {
+                const angle = i * 90 + 45
+                const rad = (angle * Math.PI) / 180
+                const x = 250 + 220 * Math.cos(rad - Math.PI / 2)
+                const y = 250 + 220 * Math.sin(rad - Math.PI / 2)
+                return `${x.toFixed(2)},${y.toFixed(2)}`
+              }).join(' ')}
+              fill="none" stroke="rgba(201,169,98,0.05)" strokeWidth="0.5"
+            />
+
+            {/* 16-pointed star — radial lines from center to edge */}
+            {Array.from({ length: 16 }).map((_, i) => {
+              const angle = i * 22.5
+              const rad = (angle * Math.PI) / 180
+              const x1 = 250 + 180 * Math.cos(rad - Math.PI / 2)
+              const y1 = 250 + 180 * Math.sin(rad - Math.PI / 2)
+              const x2 = 250 + 230 * Math.cos(rad - Math.PI / 2)
+              const y2 = 250 + 230 * Math.sin(rad - Math.PI / 2)
+              return <line key={`ray-${i}`} x1={x1.toFixed(2)} y1={y1.toFixed(2)} x2={x2.toFixed(2)} y2={y2.toFixed(2)} stroke="rgba(201,169,98,0.04)" strokeWidth="0.4" />
+            })}
+
+            {/* Inner concentric circles */}
+            <circle cx="250" cy="250" r="200" stroke="rgba(201,169,98,0.05)" strokeWidth="0.5" />
+            <circle cx="250" cy="250" r="180" stroke="rgba(201,169,98,0.04)" strokeWidth="0.4" strokeDasharray="3 5" />
+
+            {/* 8 dots at inner circle junctions */}
+            {Array.from({ length: 8 }).map((_, i) => {
+              const angle = i * 45
+              const rad = (angle * Math.PI) / 180
+              const cx = 250 + 200 * Math.cos(rad - Math.PI / 2)
+              const cy = 250 + 200 * Math.sin(rad - Math.PI / 2)
+              return <circle key={`jdot-${i}`} cx={cx.toFixed(2)} cy={cy.toFixed(2)} r="2.5" fill="rgba(201,169,98,0.08)" />
+            })}
+          </svg>
+        </motion.div>
+
+        {/* ── Layer 3: Zigzag Triangle Border Band ── */}
+        <motion.div
+          className="absolute w-[330px] h-[330px] md:w-[430px] md:h-[430px] lg:w-[530px] lg:h-[530px]"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+        >
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" overflow="visible">
+            {/* Outer zigzag ring */}
+            <path
+              d={Array.from({ length: 48 }).map((_, i) => {
+                const angle1 = i * 7.5
+                const angle2 = i * 7.5 + 3.75
+                const r1 = 192
+                const r2 = 180
+                const rad1 = (angle1 * Math.PI) / 180
+                const rad2 = (angle2 * Math.PI) / 180
+                const x1 = 200 + r1 * Math.cos(rad1 - Math.PI / 2)
+                const y1 = 200 + r1 * Math.sin(rad1 - Math.PI / 2)
+                const x2 = 200 + r2 * Math.cos(rad2 - Math.PI / 2)
+                const y2 = 200 + r2 * Math.sin(rad2 - Math.PI / 2)
+                return `${i === 0 ? 'M' : 'L'}${x1.toFixed(2)},${y1.toFixed(2)} L${x2.toFixed(2)},${y2.toFixed(2)}`
+              }).join(' ') + ' Z'}
+              stroke="rgba(201,169,98,0.08)"
+              strokeWidth="0.5"
+              fill="none"
+            />
+
+            {/* Inner zigzag ring (inverted teeth) */}
+            <path
+              d={Array.from({ length: 48 }).map((_, i) => {
+                const angle1 = i * 7.5
+                const angle2 = i * 7.5 + 3.75
+                const r1 = 170
+                const r2 = 160
+                const rad1 = (angle1 * Math.PI) / 180
+                const rad2 = (angle2 * Math.PI) / 180
+                const x1 = 200 + r1 * Math.cos(rad1 - Math.PI / 2)
+                const y1 = 200 + r1 * Math.sin(rad1 - Math.PI / 2)
+                const x2 = 200 + r2 * Math.cos(rad2 - Math.PI / 2)
+                const y2 = 200 + r2 * Math.sin(rad2 - Math.PI / 2)
+                return `${i === 0 ? 'M' : 'L'}${x1.toFixed(2)},${y1.toFixed(2)} L${x2.toFixed(2)},${y2.toFixed(2)}`
+              }).join(' ') + ' Z'}
+              stroke="rgba(201,169,98,0.05)"
+              strokeWidth="0.4"
+              fill="none"
+            />
+
+            {/* Concentric guide circles */}
+            <circle cx="200" cy="200" r="175" stroke="rgba(201,169,98,0.05)" strokeWidth="0.4" />
+            <circle cx="200" cy="200" r="155" stroke="rgba(201,169,98,0.04)" strokeWidth="0.3" />
+            <circle cx="200" cy="200" r="150" stroke="rgba(201,169,98,0.03)" strokeWidth="0.3" strokeDasharray="1.5 4" />
+          </svg>
+        </motion.div>
+
+        {/* ── Layer 4: Inner Sacred Geometry — Stars + Hexagon ── */}
+        <motion.div
+          className="absolute w-[220px] h-[220px] md:w-[300px] md:h-[300px] lg:w-[370px] lg:h-[370px]"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+          <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" overflow="visible">
+            <circle cx="200" cy="200" r="195" stroke="rgba(201,169,98,0.1)" strokeWidth="0.5" />
+            <circle cx="200" cy="200" r="188" stroke="rgba(201,169,98,0.06)" strokeWidth="0.3" strokeDasharray="2 5" />
+
+            {/* Inscribed hexagon */}
+            <polygon
+              points={Array.from({ length: 6 }).map((_, i) => {
+                const angle = i * 60
+                const rad = (angle * Math.PI) / 180
+                const x = 200 + 175 * Math.cos(rad - Math.PI / 2)
+                const y = 200 + 175 * Math.sin(rad - Math.PI / 2)
+                return `${x.toFixed(2)},${y.toFixed(2)}`
+              }).join(' ')}
+              fill="none" stroke="rgba(201,169,98,0.08)" strokeWidth="0.6"
+            />
+
+            {/* Star of David — two overlapping triangles */}
+            <polygon
+              points={Array.from({ length: 3 }).map((_, i) => {
+                const angle = i * 120
+                const rad = (angle * Math.PI) / 180
+                const x = 200 + 165 * Math.cos(rad - Math.PI / 2)
+                const y = 200 + 165 * Math.sin(rad - Math.PI / 2)
+                return `${x.toFixed(2)},${y.toFixed(2)}`
+              }).join(' ')}
+              fill="none" stroke="rgba(201,169,98,0.08)" strokeWidth="0.5"
+            />
+            <polygon
+              points={Array.from({ length: 3 }).map((_, i) => {
+                const angle = i * 120 + 60
+                const rad = (angle * Math.PI) / 180
+                const x = 200 + 165 * Math.cos(rad - Math.PI / 2)
+                const y = 200 + 165 * Math.sin(rad - Math.PI / 2)
+                return `${x.toFixed(2)},${y.toFixed(2)}`
+              }).join(' ')}
+              fill="none" stroke="rgba(201,169,98,0.06)" strokeWidth="0.5"
+            />
+
+            {/* Inner concentric rings */}
+            <circle cx="200" cy="200" r="120" stroke="rgba(201,169,98,0.05)" strokeWidth="0.4" />
+            <circle cx="200" cy="200" r="80" stroke="rgba(201,169,98,0.04)" strokeWidth="0.4" strokeDasharray="3 4" />
+
+            {/* Interlocking spiral knot at center */}
+            <path d="M200,160 C230,160 240,185 240,200 C240,215 230,240 200,240 C170,240 160,215 160,200 C160,185 170,160 200,160" stroke="rgba(201,169,98,0.06)" strokeWidth="0.5" />
+            <path d="M180,170 C200,150 230,170 230,200 C230,230 200,250 180,230 C160,210 180,190 200,200" stroke="rgba(201,169,98,0.05)" strokeWidth="0.4" />
+            <path d="M220,170 C200,150 170,170 170,200 C170,230 200,250 220,230 C240,210 220,190 200,200" stroke="rgba(201,169,98,0.05)" strokeWidth="0.4" />
+
+            {/* Center focal point */}
+            <circle cx="200" cy="200" r="12" stroke="rgba(201,169,98,0.08)" strokeWidth="0.6" />
+            <circle cx="200" cy="200" r="5" fill="rgba(201,169,98,0.1)" />
+            <circle cx="200" cy="200" r="30" stroke="rgba(201,169,98,0.04)" strokeWidth="0.3" strokeDasharray="2 3" />
+
+            {/* 12 tiny rays from center */}
+            {Array.from({ length: 12 }).map((_, i) => {
+              const angle = i * 30
+              const rad = (angle * Math.PI) / 180
+              const x1 = 200 + 15 * Math.cos(rad - Math.PI / 2)
+              const y1 = 200 + 15 * Math.sin(rad - Math.PI / 2)
+              const x2 = 200 + 35 * Math.cos(rad - Math.PI / 2)
+              const y2 = 200 + 35 * Math.sin(rad - Math.PI / 2)
+              return <line key={`cray-${i}`} x1={x1.toFixed(2)} y1={y1.toFixed(2)} x2={x2.toFixed(2)} y2={y2.toFixed(2)} stroke="rgba(201,169,98,0.04)" strokeWidth="0.3" />
+            })}
           </svg>
         </motion.div>
       </div>
+
 
       {/* ═══ 2. Golden Particle Constellation ═══ */}
       <div className="absolute inset-0 pointer-events-none">

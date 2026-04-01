@@ -220,7 +220,7 @@ export function AboutSection() {
                           <h4 className={`font-medium transition-colors duration-300 mt-1 text-foreground`}>
                             {item.role}
                           </h4>
-                          <p className="text-sm text-muted-foreground">{item.company} — {item.location}</p>
+                          <p className="text-sm text-muted-foreground">{item.company} - {item.location}</p>
                         </div>
 
                         {/* Right side icon matching education style */}

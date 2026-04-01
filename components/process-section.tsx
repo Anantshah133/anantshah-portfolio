@@ -55,13 +55,6 @@ export function ProcessSection() {
 
   return (
     <section id="process" className="relative py-32 px-6 overflow-hidden bg-background">
-      {/* Background Texture Overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
 
       <div className="relative max-w-5xl mx-auto z-10 w-full">
         <div ref={headerRef}>
@@ -75,7 +68,7 @@ export function ProcessSection() {
           {/* Animated Central Golden Thread */}
           <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 overflow-hidden flex justify-center">
             <motion.div 
-              className="w-full h-full bg-linear-to-b from-accent to-accent/50 origin-top shadow-[0_0_15px_rgba(201,169,98,0.5)]"
+              className="w-full h-full bg-linear-to-b from-accent to-accent/50 origin-top shadow-[0_0_15px_rgba(201,169,98,0.5)] will-change-transform"
               style={{ scaleY: scrollYProgress }}
             />
           </div>
@@ -114,15 +107,16 @@ function ProcessCard({ step, isEven, Icon, index }: any) {
     >
       {/* Timeline Node */}
       <motion.div 
-        className="absolute left-[24px] md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-accent z-10 shadow-[0_0_15px_rgba(201,169,98,0.5)] flex items-center justify-center transition-colors duration-500"
+        className="absolute left-[24px] md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-accent z-10 shadow-[0_0_15px_rgba(201,169,98,0.5)] flex items-center justify-center"
         initial={{ backgroundColor: "rgba(13,26,26,1)" }}
         animate={isActive ? { backgroundColor: "rgba(201,169,98,0.2)" } : { backgroundColor: "rgba(13,26,26,1)" }}
+        transition={{ duration: 0.6 }}
       >
         <motion.div 
           className="w-1.5 h-1.5 bg-accent rounded-full" 
           initial={{ scale: 0 }}
           animate={isActive ? { scale: [1, 1.5, 1], opacity: [1, 0.5, 1] } : { scale: 0 }}
-          transition={isActive ? { duration: 2, repeat: Infinity } : {}}
+          transition={isActive ? { duration: 2, repeat: Infinity } : { duration: 0.3 }}
         />
       </motion.div>
 
@@ -132,19 +126,22 @@ function ProcessCard({ step, isEven, Icon, index }: any) {
       {/* Card Content (Astrolabe Style Design logic merged into Scrolls Layout) */}
       <div className={`relative w-full md:w-1/2 ml-16 md:ml-0 ${isEven ? 'md:pr-12 lg:pr-16 text-left md:text-right' : 'md:pl-12 lg:pl-16 text-left'}`}>
         <motion.div 
-          className="relative min-h-[280px] p-8 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 ease-out border shadow-black/50"
+          className="relative min-h-[280px] p-8 rounded-2xl overflow-hidden shadow-xl transition-colors duration-700 border shadow-black/50"
           initial={{ opacity: 0, y: 50, rotateX: -10 }}
           animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
-            background: isActive 
-              ? "linear-gradient(135deg, rgba(201,169,98,0.1) 0%, rgba(13,26,26,0.95) 100%)" 
-              : "linear-gradient(135deg, rgba(18,36,36,0.9) 0%, rgba(13,26,26,0.95) 100%)",
             borderColor: isActive ? "rgba(201,169,98,0.4)" : "rgba(201,169,98,0.1)"
           }}
         >
+          {/* Base Background */}
+          <div className="absolute inset-0 bg-linear-to-br from-[#122424]/90 to-[#0d1a1a]/95 z-0" />
+          
+          {/* Hover/Active Gradient Overlay */}
+          <div className={`absolute inset-0 bg-linear-to-br from-accent/10 to-[#0d1a1a]/95 z-0 transition-opacity duration-700 ease-out ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+
           {/* Glowing Outline Box SVG mapping on hover */}
-          <svg className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-700 ease-out ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} fill="none">
+          <svg className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-700 ease-out z-0 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`} fill="none">
             <rect x="12" y="12" width="calc(100% - 24px)" height="calc(100% - 24px)" stroke="rgba(201,169,98,0.3)" strokeWidth="1" rx="8" strokeDasharray="4 6" />
             <circle cx="12" cy="12" r="3" fill="rgba(201,169,98,0.5)" />
             <circle cx="calc(100% - 12px)" cy="12" r="3" fill="rgba(201,169,98,0.5)" />
@@ -154,7 +151,7 @@ function ProcessCard({ step, isEven, Icon, index }: any) {
 
           {/* Giant Faded Sanskrit Background Letter */}
           <div className={`absolute -bottom-10 select-none pointer-events-none z-0 ${isEven ? 'md:-left-6 -right-6' : '-right-6'}`}>
-            <span className={`font-serif text-[12rem] leading-none transition-all duration-1000 ${isActive ? 'text-accent/10 scale-110 rotate-12' : 'text-accent/5 scale-100 rotate-0'}`}>
+            <span className={`inline-block font-serif text-[12rem] leading-none transition-all duration-1000 ${isActive ? 'text-accent/10 scale-110 rotate-12' : 'text-accent/5 scale-100 rotate-0'}`}>
               {step.sanskrit.charAt(0)}
             </span>
           </div>

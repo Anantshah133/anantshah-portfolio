@@ -2,30 +2,36 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Github, Globe } from "lucide-react"
 import { SectionTitle } from "./section-title"
 
 const projects = [
   {
-    title: "Lumina",
-    category: "SaaS Platform",
-    description: "A meditation app blending ancient mindfulness with modern interface design.",
-    tags: ["Next.js", "Supabase", "AI"],
+    title: "Healhub",
+    category: "Hospital Management System",
+    description: "A full-stack MERN hospital management system handling patients, doctors, and admins. Features real-time appointment scheduling and secure role-based access.",
+    tags: ["React", "Express", "Node.js", "MongoDB", "Tailwind", "JWT", "Cloudinary"],
     image: "/meditation-app-dark-minimal-interface.jpg",
+    githubUrl: "https://github.com/Anantshah133/healhub",
+    liveUrl: "#",
   },
   {
-    title: "Vertex",
-    category: "E-Commerce",
-    description: "Premium furniture brand with immersive 3D product visualization.",
-    tags: ["Three.js", "Shopify", "React"],
+    title: "Orpel Complaint Tracker",
+    category: "Complaint Tracking System",
+    description: "A specialized complaint management system for tracking customer issues across regions. Features automated notifications and streamlined backend logic.",
+    tags: ["PHP", "MySQL", "Tailwind", "Alpine.js"],
     image: "/luxury-furniture-ecommerce-dark-minimal.jpg",
+    githubUrl: "https://github.com/Anantshah133/Onelife-dashboard",
+    liveUrl: "#",
   },
   {
-    title: "Chronicle",
-    category: "Editorial Platform",
-    description: "Long-form publishing platform focused on typography and reading experience.",
-    tags: ["TypeScript", "MDX", "Tailwind"],
-    image: "/editorial-blog-platform-dark-elegant-typography.jpg",
+    title: "As Store",
+    category: "Stock management system",
+    description: "A real-time stock management portal for efficient retail inventory. Dual-role setup ensures centralized control and reduces manual coordination delays.",
+    tags: ["PHP", "MySQL", "Tailwind", "Bootstrap", "Alpine.js"],
+    image: "/luxury-furniture-ecommerce-dark-minimal.jpg",
+    githubUrl: "https://github.com/Anantshah133/pinky-sales",
+    liveUrl: "https://pragmanxt.com/asstore.in/index.php",
   },
 ]
 
@@ -71,15 +77,18 @@ export function ProjectsSection() {
               transition={{ duration: 0.8, delay: 0.2 + index * 0.15 }}
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
-              className={`group grid md:grid-cols-2 gap-8 md:gap-12 items-center ${
-                index % 2 === 1 ? "md:grid-flow-col-dense" : ""
-              }`}
+              className="relative p-8 md:p-12 rounded-3xl border border-accent/10 bg-card/10 backdrop-blur-md overflow-hidden group cursor-pointer grid md:grid-cols-[1.2fr_1fr] gap-8 md:gap-16 items-center"
             >
-              {/* Image */}
+              {/* Ancient Decorative Corners for Card */}
+              <div className="absolute top-4 left-4 w-12 h-12 border-t border-l border-accent/20 rounded-tl-xl opacity-50 pointer-events-none" />
+              <div className="absolute top-4 right-4 w-12 h-12 border-t border-r border-accent/20 rounded-tr-xl opacity-50 pointer-events-none" />
+              <div className="absolute bottom-4 left-4 w-12 h-12 border-b border-l border-accent/20 rounded-bl-xl opacity-50 pointer-events-none" />
+              <div className="absolute bottom-4 right-4 w-12 h-12 border-b border-r border-accent/20 rounded-br-xl opacity-50 pointer-events-none" />
+              
+              {/* Image Container with Data Cursor */}
               <div
-                className={`relative aspect-[4/3] rounded-xl overflow-hidden ${
-                  index % 2 === 1 ? "md:col-start-2" : ""
-                }`}
+                data-cursor="View Project"
+                className={`relative aspect-4/3 rounded-2xl shadow-xl shadow-black/40 overflow-hidden ${index % 2 === 1 ? "md:order-2" : "md:order-1"}`}
               >
                 <div className="absolute inset-0 bg-card border border-border/50" />
                 <motion.div
@@ -95,7 +104,7 @@ export function ProjectsSection() {
                 </motion.div>
                 {/* Overlay on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"
+                  className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent"
                   initial={{ opacity: 0 }}
                   animate={hoveredProject === index ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.4 }}
@@ -119,42 +128,58 @@ export function ProjectsSection() {
               </div>
 
               {/* Content */}
-              <div className={`${index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
+              <div className={`flex flex-col justify-center ${index % 2 === 1 ? "md:order-1" : "md:order-2"}`}>
                 <span className="text-accent/70 text-xs tracking-[0.2em] uppercase">{project.category}</span>
                 <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light mt-3 mb-4 text-foreground group-hover:text-accent/90 transition-colors duration-500">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 max-w-md">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-8 max-w-md">
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2.5 mb-8">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full text-xs bg-muted/50 text-muted-foreground border border-border/50"
+                      className="px-4 py-1.5 rounded-full text-[11px] tracking-widest capitalize text-accent/80 bg-accent/5 border border-accent/20 hover:bg-accent/15 hover:border-accent/50 hover:text-accent transition-all duration-300 shadow-[inset_0_0_8px_rgba(201,169,98,0.02)] hover:shadow-[0_0_12px_rgba(201,169,98,0.15)] cursor-default"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* View Link with golden underline */}
-                <motion.a
-                  href="#"
-                  className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-accent transition-colors duration-300 group/link relative"
-                  whileHover={{ x: 4 }}
-                >
-                  <span>View Project</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  <motion.span
-                    className="absolute -bottom-1 left-0 h-px bg-accent"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.a>
+                {/* Actions */}
+                <div className="flex flex-wrap items-center gap-6 mt-2">
+                  {
+                    project.liveUrl !== "#" && (
+                      <motion.a
+                        href={project.liveUrl}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-foreground bg-primary/10 border border-primary/20 px-6 py-2.5 rounded-full shadow-[0_0_10px_rgba(69,160,150,0.1)] hover:shadow-[0_0_20px_rgba(69,160,150,0.2)] hover:bg-primary/20 hover:border-primary/40 transition-all duration-300 group/link"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span>Live Preview</span>
+                        <Globe className="w-4 h-4 transition-transform duration-300 group-hover/link:rotate-12 group-hover/link:scale-110" />
+                      </motion.a>
+                    )
+                  }
+
+                  <motion.a
+                    href={project.githubUrl}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group/git relative"
+                    whileHover={{ x: 2 }}
+                  >
+                    <Github className="w-4 h-4 transition-transform duration-300 group-hover/git:-translate-y-0.5 group-hover/git:text-accent" />
+                    <span className="group-hover/git:text-accent transition-colors duration-300">View Code</span>
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-px bg-accent/50"
+                      initial={{ width: 0 }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.a>
+                </div>
               </div>
             </motion.article>
           ))}

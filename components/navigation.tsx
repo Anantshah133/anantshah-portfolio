@@ -120,7 +120,7 @@ export function Navigation() {
               Let's Talk
             </motion.a>
 
-            {/* Bird Companion Toggle */}
+            {/* Bird Companion Toggle Commented out
             <motion.button
               onClick={toggleBird}
               className={`relative w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${
@@ -146,17 +146,11 @@ export function Navigation() {
                     exit={{ opacity: 0, scale: 0.5, rotate: 20 }}
                     transition={{ duration: 0.25 }}
                   >
-                    {/* Bird body */}
                     <ellipse cx="12" cy="14" rx="4.5" ry="5" fill="currentColor" opacity="0.9" />
-                    {/* Head */}
                     <circle cx="11" cy="7.5" r="3.5" fill="currentColor" opacity="0.95" />
-                    {/* Beak */}
                     <path d="M7.5,8 L5,9 L7.5,10" fill="currentColor" opacity="0.8" />
-                    {/* Eye */}
                     <circle cx="9.8" cy="7" r="0.8" fill="var(--background)" />
-                    {/* Wing */}
                     <path d="M15,10 C18,8 20,7 21,9 C19,11 17,12 15,12 Z" fill="currentColor" opacity="0.7" />
-                    {/* Tail */}
                     <path d="M14,18 C14,20 13,22 12,23 M12,18 C11,20 10,22 9,23" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
                   </motion.svg>
                 ) : (
@@ -171,21 +165,17 @@ export function Navigation() {
                     exit={{ opacity: 0, scale: 0.5, rotate: -20 }}
                     transition={{ duration: 0.25 }}
                   >
-                    {/* Bird body (dimmed) */}
                     <ellipse cx="12" cy="14" rx="4.5" ry="5" fill="currentColor" opacity="0.3" />
-                    {/* Head */}
                     <circle cx="11" cy="7.5" r="3.5" fill="currentColor" opacity="0.35" />
-                    {/* Beak */}
                     <path d="M7.5,8 L5,9 L7.5,10" fill="currentColor" opacity="0.25" />
-                    {/* Wing */}
                     <path d="M15,10 C18,8 20,7 21,9 C19,11 17,12 15,12 Z" fill="currentColor" opacity="0.25" />
-                    {/* Diagonal slash through */}
                     <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
                     <line x1="3" y1="3" x2="21" y2="21" stroke="var(--background)" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
                   </motion.svg>
                 )}
               </AnimatePresence>
             </motion.button>
+            */}
 
             {/* Hamburger button — visible on mobile/tablet */}
             <motion.button

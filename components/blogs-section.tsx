@@ -208,15 +208,15 @@ export function BlogsSection() {
           transition={{ delay: 0.9, duration: 0.7 }}
           className="flex justify-center mt-16"
         >
-          <Link
-            href="/blogs"
-            className="group relative flex items-center gap-3 px-8 py-3 border border-border rounded-full text-sm tracking-widest uppercase text-muted-foreground hover:text-foreground hover:border-accent/40 transition-all duration-500 overflow-hidden"
-          >
-            {/* Hover fill */}
-            <span className="absolute inset-0 bg-accent/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-full" />
-            <span className="relative">View All Writings</span>
-            <ArrowUpRight className="relative w-3.5 h-3.5 group-hover:text-accent transition-colors duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </Link>
+            <Link
+              href="/blogs"
+              className="group relative flex items-center gap-3 px-8 py-3 border border-border rounded-full text-sm tracking-widest uppercase text-muted-foreground hover:text-foreground hover:border-accent/40 transition-all duration-500 overflow-hidden"
+            >
+              {/* Hover fill */}
+              <span className="absolute inset-0 bg-accent/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-full" />
+              <span className="relative">View All Writings</span>
+              <ArrowUpRight className="relative w-3.5 h-3.5 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+            </Link>
         </motion.div>
       </div>
     </section>
@@ -235,7 +235,11 @@ function BlogCard({ blog, index, numeral }: { blog: (typeof blogs)[0]; index: nu
       onMouseLeave={() => setHovered(false)}
       className="group relative"
     >
-      <Link href={`/blogs/${blog.slug}`} className="block h-full">
+      <Link 
+        href={`/blogs/${blog.slug}`} 
+        className="block h-full"
+        data-cursor="Click to read more..."
+      >
         <div className="relative h-full border border-border rounded-lg bg-card/40 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(13,26,26,0.8)]">
 
           {/* Image */}
@@ -247,7 +251,7 @@ function BlogCard({ blog, index, numeral }: { blog: (typeof blogs)[0]; index: nu
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Image overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-card via-card/40 to-transparent" />
             {/* Ancient roman numeral — top right watermark */}
             <span className="absolute top-4 right-5 font-serif text-4xl font-light text-white/20 select-none transition-colors duration-500 group-hover:text-accent/30 leading-none drop-shadow-lg">
               {numeral}
@@ -258,7 +262,7 @@ function BlogCard({ blog, index, numeral }: { blog: (typeof blogs)[0]; index: nu
           </div>
 
           {/* Subtle smoke bg on hover */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
+          <div className={`absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-700 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"}`} />
 
           {/* Top hairline accent */}
           <div className={`absolute top-44 left-6 right-6 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />

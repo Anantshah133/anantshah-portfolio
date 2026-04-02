@@ -210,6 +210,7 @@ export function AboutSection() {
                     <button
                       onClick={() => toggleExp(index)}
                       className="w-full text-left group focus:outline-none mb-2 cursor-pointer"
+                      data-cursor="Read More"
                     >
                       <div className="relative flex items-start justify-between gap-4 py-1">
                         {/* Text Content */}

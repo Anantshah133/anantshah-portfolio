@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { BirdProvider } from "@/components/bird-provider"
 import { BirdCompanion } from "@/components/bird-companion"
+import { CustomCursor } from "@/components/custom-cursor"
 import "./globals.css"
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -40,7 +41,8 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="dark">
           <BirdProvider>
             <div className="noise-overlay" />
-            <BirdCompanion />
+            {/* <BirdCompanion /> */}
+            <CustomCursor />
             {children}
           </BirdProvider>
         </ThemeProvider>

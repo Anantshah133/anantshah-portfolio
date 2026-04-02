@@ -182,8 +182,8 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
                         href={item.href}
                         onClick={onClose}
                         className={`group relative flex items-center gap-4 py-3.5 px-4 rounded-xl transition-all duration-300 ${isActive
-                            ? "bg-primary/10 border border-primary/20 text-foreground"
-                            : "text-muted-foreground hover:text-foreground hover:bg-card/40"
+                          ? "bg-primary/10 border border-primary/20 text-foreground"
+                          : "text-muted-foreground hover:text-foreground hover:bg-card/40"
                           }`}
                       >
                         {/* Active indicator dot */}
@@ -265,7 +265,7 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
             />
 
             {/* ─── Right-edge glow ─── */}
-            <div className="absolute top-0 right-0 bottom-0 w-px bg-gradient-to-b from-accent/20 via-primary/10 to-accent/20" />
+            <div className="absolute top-0 right-0 bottom-0 w-px bg-linear-to-b from-accent/20 via-primary/10 to-accent/20" />
           </motion.div>
         </>
       )}

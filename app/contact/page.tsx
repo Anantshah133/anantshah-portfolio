@@ -52,7 +52,7 @@ export default function ContactPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     // Dispatch custom event so the bird companion can react to typing
-    window.dispatchEvent(new CustomEvent("bird-typing"))
+    // window.dispatchEvent(new CustomEvent("bird-typing"))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -15,6 +15,7 @@ export default function Home() {
       <div className="ancient-overlay" />
 
       <Navigation />
+      
       <HeroSection />
       <SectionDivider />
 
@@ -30,8 +31,8 @@ export default function Home() {
       <ProcessSection />
       <SectionDivider />
 
-      <SignatureSection />
-      <SectionDivider />
+      {/* <SignatureSection />
+      <SectionDivider /> */}
 
       <BlogsSection />
       <SectionDivider />

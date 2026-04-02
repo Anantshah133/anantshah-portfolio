@@ -55,11 +55,12 @@ export function Navigation() {
   }, [sidebarOpen])
 
   const navItems = [
+    { label: "Home", href: "/#hero" },
     { label: "About", href: "/#about" },
     { label: "Skills", href: "/#skills" },
     { label: "Projects", href: "/#projects" },
     { label: "Process", href: "/#process" },
-    { label: "Signature", href: "/#signature" },
+    // { label: "Signature", href: "/#signature" },
     { label: "Blogs", href: "/#blogs" },
     { label: "Contact", href: "/#contact" },
   ]
@@ -86,7 +87,7 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, index) => {
-              const isActive = activeSection === item.href.slice(1)
+              const isActive = activeSection === item.href.split('#')[1]
               return (
                 <Link
                   key={item.label}

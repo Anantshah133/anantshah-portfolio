@@ -170,7 +170,7 @@ export function MobileSidebar({ isOpen, onClose, navItems, activeSection }: Mobi
               {/* Navigation Links */}
               <nav className="flex-1 space-y-1">
                 {navItems.map((item, index) => {
-                  const isActive = activeSection === item.href.slice(1)
+                  const isActive = activeSection === item.href.split('#')[1]
                   return (
                     <motion.div
                       key={item.label}

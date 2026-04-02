@@ -28,7 +28,7 @@ export function HeroSection() {
   ]
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Fog Background Effect */}
       <FogEffect />
 
@@ -474,8 +474,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 1.6 }}
           className="text-muted-foreground/80 max-w-lg mx-auto text-sm md:text-base leading-relaxed mb-12"
         >
-          I'm not an average GPT developer. I craft digital experiences that blend ancient wisdom with modern
-          innovation.
+          I focus on building real applications - not just projects that look good, but ones that actually make sense (Not an average GPT developer).
         </motion.p>
 
         {/* CTA Buttons */}
@@ -486,12 +485,12 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
-            href="#signature"
+            href="#about"
             className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm tracking-wide hover:bg-primary/90 transition-all duration-300"
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(69, 160, 150, 0.4)" }}
             whileTap={{ scale: 0.98 }}
           >
-            View My Work
+            Explore About Me
           </motion.a>
           <motion.a
             href="#contact"

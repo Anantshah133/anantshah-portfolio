@@ -11,7 +11,7 @@ const projects = [
     category: "Hospital Management System",
     description: "A full-stack MERN hospital management system handling patients, doctors, and admins. Features real-time appointment scheduling and secure role-based access.",
     tags: ["React", "Express", "Node.js", "MongoDB", "Tailwind", "JWT", "Cloudinary"],
-    image: "/meditation-app-dark-minimal-interface.jpg",
+    image: "/healhub-project-1-img.png",
     githubUrl: "https://github.com/Anantshah133/healhub",
     liveUrl: "#",
   },
@@ -20,7 +20,7 @@ const projects = [
     category: "Complaint Tracking System",
     description: "A specialized complaint management system for tracking customer issues across regions. Features automated notifications and streamlined backend logic.",
     tags: ["PHP", "MySQL", "Tailwind", "Alpine.js"],
-    image: "/luxury-furniture-ecommerce-dark-minimal.jpg",
+    image: "/orpel-project-2-img.png",
     githubUrl: "https://github.com/Anantshah133/Onelife-dashboard",
     liveUrl: "#",
   },
@@ -29,7 +29,7 @@ const projects = [
     category: "Stock management system",
     description: "A real-time stock management portal for efficient retail inventory. Dual-role setup ensures centralized control and reduces manual coordination delays.",
     tags: ["PHP", "MySQL", "Tailwind", "Bootstrap", "Alpine.js"],
-    image: "/luxury-furniture-ecommerce-dark-minimal.jpg",
+    image: "/asstore-project-3-img.png",
     githubUrl: "https://github.com/Anantshah133/pinky-sales",
     liveUrl: "https://pragmanxt.com/asstore.in/index.php",
   },
@@ -93,13 +93,13 @@ export function ProjectsSection() {
                 <div className="absolute inset-0 bg-card border border-border/50" />
                 <motion.div
                   className="absolute inset-0"
-                  animate={hoveredProject === index ? { scale: 1.05 } : { scale: 1 }}
+                  animate={hoveredProject === index ? { scale: 1.05, opacity: 1 } : { scale: 1, opacity: 0.8 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-80"
+                    className="w-full h-full object-cover"
                   />
                 </motion.div>
                 {/* Overlay on hover */}

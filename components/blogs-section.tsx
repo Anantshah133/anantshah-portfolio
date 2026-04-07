@@ -201,22 +201,19 @@ export function BlogsSection() {
           </div>
         </div>
 
-        {/* View all blogs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.9, duration: 0.7 }}
           className="flex justify-center mt-16"
         >
-            <Link
-              href="/blogs"
-              className="group relative flex items-center gap-3 px-8 py-3 border border-border rounded-full text-sm tracking-widest uppercase text-muted-foreground hover:text-foreground hover:border-accent/40 transition-all duration-500 overflow-hidden"
-            >
-              {/* Hover fill */}
-              <span className="absolute inset-0 bg-accent/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-full" />
-              <span className="relative">View All Writings</span>
-              <ArrowUpRight className="relative w-3.5 h-3.5 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
-            </Link>
+          <Link
+            href="/blogs"
+            className="group relative flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground rounded-full font-medium text-sm tracking-widest uppercase hover:bg-primary/90 hover:shadow-[0_0_30px_rgba(69,160,150,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 overflow-hidden"
+          >
+            <span className="relative">View All Writings</span>
+            <ArrowUpRight className="relative w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+          </Link>
         </motion.div>
       </div>
     </section>

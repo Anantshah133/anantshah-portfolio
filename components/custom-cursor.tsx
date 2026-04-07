@@ -1,19 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function CustomCursor() {
   const [isMobile, setIsMobile] = useState(false)
   const [hoverText, setHoverText] = useState<string | null>(null)
-
-  const cursorX = useMotionValue(-100)
-  const cursorY = useMotionValue(-100)
-
-  // Remove useSpring and use raw motion values for zero delay tracking
-  const springConfig = { damping: 100, stiffness: 2000, mass: 0.1 }
-  const smoothX = useSpring(cursorX, springConfig)
-  const smoothY = useSpring(cursorY, springConfig)
+  const cursorRef = useRef<HTMLDivElement>(null)
+  
+  // Track position with refs for zero-latency DOM updates
+  const mousePos = useRef({ x: -100, y: -100 })
+  const rafId = useRef<number | null>(null)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -21,12 +18,12 @@ export function CustomCursor() {
     window.addEventListener("resize", checkMobile)
 
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
-
+      mousePos.current.x = e.clientX
+      mousePos.current.y = e.clientY
+      
       const target = e.target as HTMLElement
       const cursorTarget = target.closest('[data-cursor]') as HTMLElement
-
+      
       if (cursorTarget) {
         setHoverText(cursorTarget.getAttribute('data-cursor'))
       } else {
@@ -39,13 +36,22 @@ export function CustomCursor() {
       }
     }
 
+    // Direct DOM update loop for absolute smooth performance (Zero React lag)
+    const updateCursor = () => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`
+      }
+      rafId.current = requestAnimationFrame(updateCursor)
+    }
+
     if (!isMobile) {
       window.addEventListener("mousemove", handleMouseMove)
+      rafId.current = requestAnimationFrame(updateCursor)
     } else {
       document.body.style.cursor = 'auto'
     }
 
-    // also set cursor none for all standard clickable elements globally to avoid blinking
+    // Global style to hide default cursor and enforce custom cursor behavior
     const style = document.createElement('style')
     style.innerHTML = `
       @media (min-width: 768px) {
@@ -57,19 +63,21 @@ export function CustomCursor() {
     return () => {
       window.removeEventListener("resize", checkMobile)
       window.removeEventListener("mousemove", handleMouseMove)
+      if (rafId.current) cancelAnimationFrame(rafId.current)
       document.body.style.cursor = 'auto'
       if (document.head.contains(style)) {
         document.head.removeChild(style)
       }
     }
-  }, [cursorX, cursorY, isMobile])
+  }, [isMobile])
 
   if (isMobile) return null
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 z-[9999] pointer-events-none flex flex-col items-start"
-      style={{ x: cursorX, y: cursorY }}
+    <div
+      ref={cursorRef}
+      className="fixed top-0 left-0 z-[9999] pointer-events-none flex flex-col items-start will-change-transform"
+      style={{ transform: "translate3d(-100px, -100px, 0)" }}
     >
       <div className="relative -top-1 -left-1">
         {/* Custom arrow SVG tracking mouse */}
@@ -99,6 +107,6 @@ export function CustomCursor() {
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </div>
   )
 }
